@@ -1,29 +1,28 @@
-def bubble_sort(arr):
+def bubble_sort(arr, ascending=True):
     n = len(arr)
-    # Проходим по всем элементам массива
     for i in range(n):
-        # Последние i элементов уже отсортированы
-        for j in range(0, n - i - 1):
-            # Меняем местами, если элемент найден больше следующего
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+        for j in range(0, n-i-1):
+            # Сравнение для сортировки по возрастанию или убыванию
+            if (ascending and arr[j] > arr[j+1]) or (not ascending and arr[j] < arr[j+1]):
+                arr[j], arr[j+1] = arr[j+1], arr[j]
 
-def main():
-    # Запрашиваем количество чисел
-    n = int(input("Введите количество чисел для сортировки: "))
-    numbers = []
+# Запрос количества чисел у пользователя
+n = int(input("Введите количество чисел для сортировки: "))
+numbers = []
 
-    # Запрашиваем числа
-    for _ in range(n):
-        num = float(input("Введите число: "))  # Можно использовать int, если нужны только целые числа
-        numbers.append(num)
+# Запрос чисел у пользователя
+for _ in range(n):
+    num = float(input("Введите число: "))
+    numbers.append(num)
 
-    # Сортируем числа
-    bubble_sort(numbers)
+# Запрос порядка сортировки
+order = input("Введите 'a' для сортировки по возрастанию или 'd' для сортировки по убыванию: ").strip().lower()
 
-    # Выводим отсортированные числа
-    print("Отсортированные числа:", numbers)
+# Определение порядка сортировки
+ascending = True if order == 'a' else False
 
-# Запуск программы
-if __name__ == "__main__":
-    main()
+# Сортируем массив
+bubble_sort(numbers, ascending)
+
+# Вывод отсортированного массива
+print("Отсортированные числа:", numbers)
